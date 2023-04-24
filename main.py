@@ -20,7 +20,7 @@ while True:
                 profile_id = p["profile_id"]
                 break
 
-        # If we found the profile ID, get the farming data for melons
+        # If we found the profile ID, get the farming data for a crop
         if profile_id:
             api_url = f"https://api.hypixel.net/skyblock/profile?key={api_key}&profile=Coconut"
             response = requests.get(api_url)
@@ -28,9 +28,9 @@ while True:
             if data["success"]:
                 farming_data = data["profile"]["members"][username]["stats"]["farming"]
                 farming_xp_per_hour = farming_data["experience"] / farming_data["playtime_minutes"] * 60
-                melon_count = farming_data["collections"].get("MELON", {}).get("unlocked_tiers", 0) * 64
-                print(f"Melon farming experience points per hour: {farming_xp_per_hour:.2f}")
-                print(f"Current melon count: {melon_count}")
+                pumpkin_count = farming_data["collections"].get("PUMPKIN", {}).get("unlocked_tiers", 0) * 64
+                print(f"Pumpkin farming experience points per hour: {farming_xp_per_hour:.2f}")
+                print(f"Current pumpkin count: {pumpkin_count}")
             else:
                 print("Failed to retrieve skyblock profile data.")
         else:
